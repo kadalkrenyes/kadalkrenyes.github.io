@@ -1,56 +1,179 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>CSS only marquee with slow on hover</title>
+<title>FRZL</title>
+<link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/OOjs_UI_icon_error-destructive.svg/1200px-OOjs_UI_icon_error-destructive.svg.png">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Tomorrow');
+ body{
+  margin:0;
+  padding:0;
+  font-family: 'Tomorrow', sans-serif;
+  height:100vh;
+background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.text{
+  position:absolute;
+  top:10%;
+  color:#fff;
+  text-align:center;
+}
+h1{
+  font-size:50px;
+}
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:#fff;
+  right:0;
+  animation:starTwinkle 3s infinite linear;
+}
+.astronaut img{
+  width:100px;
+  position:absolute;
+  top:55%;
+  animation:astronautFly 6s infinite linear;
+}
+@keyframes astronautFly{
+  0%{
+    left:-100px;
+  }
+  25%{
+    top:50%;
+    transform:rotate(30deg);
+  }
+  50%{
+    transform:rotate(45deg);
+    top:55%;
+  }
+  75%{
+    top:60%;
+    transform:rotate(30deg);
+  }
+  100%{
+    left:110%;
+    transform:rotate(45deg);
+  }
+}
+@keyframes starTwinkle{
+  0%{
+     background:rgba(255,255,255,0.4);
+  }
+  25%{
+    background:rgba(255,255,255,0.8);
+  }
+  50%{
+   background:rgba(255,255,255,1);
+  }
+  75%{
+    background:rgba(255,255,255,0.8);
+  }
+  100%{
+    background:rgba(255,255,255,0.4);
+  }
+}
+:root {
+	--primary: #fff;
+	--solid: #fff;
+	--btn-w: 7em;
+	--dot-w: calc(var(--btn-w)*.2);
+	--tr-X: calc(var(--btn-w) - var(--dot-w));
+}
+* {box-sizing: border-box;}
+*:before, *:after {box-sizing: border-box;}
+.btn {
+	position: relative;
+	margin: 0 auto;
+	width: var(--btn-w);
+	color: var(--primary);
+	border: .15em solid var(--primary);
+	border-radius: 5em;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 1em;
+	line-height: 2em;
+	cursor: pointer;	
+}
+.dot {
+	content: '';
+	position: absolute;
+	top: 0;
+	width: var(--dot-w);
+	height: 100%;
+	border-radius: 100%;
+	transition: all 300ms ease;
+	display: none;
+}
+.dot:after {
+	content: '';
+	position: absolute;
+	left: calc(50% - .4em);
+	top: -.4em;
+	height: .8em;
+	width: .8em;
+	background: var(--primary);
+	border-radius: 1em;
+	border: .25em solid var(--solid);
+	box-shadow: 0 0 .7em var(--solid),
+				0 0 2em var(--primary);
+}
+.btn:hover .dot,
+.btn:focus .dot {
+	animation: atom 2s infinite linear;
+	display: block;
+}
+@keyframes atom {
+	0% {transform: translateX(0) rotate(0);}
+	30%{transform: translateX(var(--tr-X)) rotate(0);}
+	50% {transform: translateX(var(--tr-X)) rotate(180deg);}
+	80% {transform: translateX(0) rotate(180deg);}
+	100% {transform: translateX(0) rotate(360deg);}
+}
 
-
-<link rel="stylesheet" href="x.css">
+</style>
+<audio autoplay loop src="Gravity.mp3"></audio>
 </head>
-<button aria-pressed="false" onClick="this.setAttribute('aria-pressed',this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');">Pause Animation</button>
-
-<div class='marquees'>
-	<section class='marquee' style='--char-count: 28'>
-		<div class='marquee--inner'>
-			<p>FRZL</p>
-			<p aria-hidden='true'>FRZL</p>
-			<p aria-hidden='true'>FRZL</p>
-			<p aria-hidden='true'>FRZL</p>
-			<p aria-hidden='true'>FRZL</p>
-						<p aria-hidden='true'>FRZL</p>
-		</div>
-	</section>
-
-	<div class='marquee' style='--char-count: 30'>
-		<div class='marquee--inner'>
-			<p>You have feet in your shoes</p>
-			<p aria-hidden='true'>You have feet in your shoes</p>
-			<p aria-hidden='true'>You have feet in your shoes</p>
-			<p aria-hidden='true'>You have feet in your shoes</p>
-			<p aria-hidden='true'>You have feet in your shoes</p>
-						<p aria-hidden='true'>You have feet in your shoes</p>
-		</div>
-	</div>
-
-	<section class='marquee' style='--char-count: 22'>
-		<div class='marquee--inner'>
-			<p>You can steer yourself</p>
-			<p aria-hidden='true'>You can steer yourself</p>
-			<p aria-hidden='true'>You can steer yourself</p>
-			<p aria-hidden='true'>You can steer yourself</p>
-			<p aria-hidden='true'>You can steer yourself</p>
-						<p aria-hidden='true'>You can steer yourself</p>
-		</div>
-	</section>
-
-	<section class='marquee' style='--char-count: 24'>
-		<div class='marquee--inner'>
-			<p>Any direction you choose</p>
-			<p aria-hidden='true'>Any direction you choose</p>
-			<p aria-hidden='true'>Any direction you choose</p>
-			<p aria-hidden='true'>Any direction you choose</p>
-			<p aria-hidden='true'>Any direction you choose</p>
-						<p aria-hidden='true'>Any direction you choose</p>
-		</div>
-	</section>
+<body>
+<div class="text">
+  <div>ERROR</div>
+  <h1>FRZL</h1>
+  <div>Not Here</div>
+  <hr><br/>
+  <a href="https://www.instagram.com/farizalsetya">	<div class="btn">
+		<div>Go Back!</div>
+		<div class="dot"></div>
+	</div></a>
 </div>
+<div class="astronaut">
+  <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png" alt="" class="src">
+</div>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+ var body=document.body;
+  setInterval(createStar,50);
+  function createStar(){
+    var right=Math.random()*500;
+    var top=Math.random()*screen.height;
+    var star=document.createElement("div");
+ star.classList.add("star")
+  body.appendChild(star);
+  setInterval(runStar,10);
+    star.style.top=top+"px";
+  function runStar(){
+    if(right>=screen.width){
+      star.remove();
+    }
+    right+=3;
+    star.style.right=right+"px";
+  }
+  } 
+})
+</script>
+</body>
+</html>
+
