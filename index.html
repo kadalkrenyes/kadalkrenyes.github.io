@@ -135,7 +135,83 @@ h1{
 	80% {transform: translateX(0) rotate(180deg);}
 	100% {transform: translateX(0) rotate(360deg);}
 }
+/*  audio file styles */
+      .audio-player {
+     	position:absolute;
+ 		top:85%;
+        box-sizing: border-box;
+        color: #FFF;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: 6px auto;
+        background: #rgba(255,255,255,0.5) ;
+        box-shadow: 9.14894px 3.65957px 31.1064px rgb(0 0 0 / 95%);
+        border-radius: 30px;
+        padding: 21px 32px;
+        font-family: 'Tomorrow';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 27px;
+        line-height: 47px;
+        max-width: 519px;
+        height: 88px;
+        display: flex;
+        align-items: center;
+    }
 
+    .audio-player-container.is-active .audio-player  {
+        display: flex;   
+    }
+
+    .audio-player .toggle-play {
+        height: 54px;
+        width: 54px;
+         cursor: pointer;
+    }
+
+    .audio-player  .toggle-play.play {
+        background: url(https://www.svgrepo.com/show/418036/play.svg);
+         background-repeat: no-repeat;
+    background-position: center;
+      background-size: contain;
+    }
+
+    .audio-player  .toggle-play.pause {
+       background: url(https://www.svgrepo.com/show/418030/turn-off.svg);
+         background-repeat: no-repeat;
+    background-position: center;
+      background-size: contain;
+    }
+
+    .audio-player  .time {
+        display: flex;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .timeline {
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        background: #B6B6B6;
+        border-radius: 10px;
+        height: 14px;
+        overflow: hidden;
+    }
+
+    .timeline .progress {
+        background: #4E3306;
+        width: 0%;
+        height: 100%;
+        transition: 0.25s;
+        border-radius: 10px;
+    }
+@media only screen and (max-width: 767px){
+   .audio-player .toggle-play { height: 47px; width: 47px; }
+     .audio-player{font-size: 18px; padding: 12px 28px; height: 79px; border-radius: 16px;}
+     .audio-player .time { padding-left: 12px; padding-right: 12px; }
+     .timeline{height: 12px;}
+}
 </style>
 </head>
 <body>
@@ -152,6 +228,30 @@ h1{
 <div class="astronaut">
   <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png" alt="" class="src">
 </div>
+         <div class="audio-player">
+
+    <div class="play-container">
+        <div class="toggle-play play">
+        </div>
+    </div>
+    <div class="time">
+        <div class="current">0:00</div>
+        <div class="divider">/</div>
+        <div class="length"></div>
+    </div>
+    <div class="timeline">
+        <div class="progress"></div>
+    </div>
+    <div class="volume-container">
+        <div class="volume-button">
+            <div class="volume icono-volumeMedium"></div>
+        </div>
+
+        <div class="volume-slider">
+            <div class="volume-percentage"></div>
+        </div>
+    </div>
+</div> 
 <script>
 document.addEventListener("DOMContentLoaded",function(){
  var body=document.body;
@@ -317,6 +417,75 @@ var colours=new Array("#FFF", "#FFF", "#FFF", "#FFF", "#FFF"); // colours for to
     }
     // ]]>
 </script>
+<script>
+//   play audio code start
+ const audioPlayer = document.querySelector(".audio-player");
+    const audio = new Audio("//farizal.web.id/Gravity.mp3"
+    );
+    //credit for song: Adrian kreativaweb@gmail.com
+
+    console.dir(audio);
+
+    audio.addEventListener(
+        "loadeddata",
+        () => {
+            audioPlayer.querySelector(".time .length").textContent = getTimeCodeFromNum(
+                audio.duration
+            );
+            audio.volume = .75;
+        },
+        false
+    );
+
+    //click on timeline to skip around
+    const timeline = audioPlayer.querySelector(".timeline");
+    timeline.addEventListener("click", e => {
+        const timelineWidth = window.getComputedStyle(timeline).width;
+        const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
+        audio.currentTime = timeToSeek;
+    }, false);
+
+
+    //check audio percentage and update time accordingly
+    setInterval(() => {
+        const progressBar = audioPlayer.querySelector(".progress");
+        progressBar.style.width = audio.currentTime / audio.duration * 100 + "%";
+        audioPlayer.querySelector(".time .current").textContent = getTimeCodeFromNum(
+            audio.currentTime
+        );
+    }, 500);
+
+    //toggle between playing and pausing on button click
+    const playBtn = audioPlayer.querySelector(".toggle-play");
+    playBtn.addEventListener(
+        "click",
+        () => {
+            if (audio.paused) {
+                playBtn.classList.remove("play");
+                playBtn.classList.add("pause");
+                audio.play();
+            } else {
+                playBtn.classList.remove("pause");
+                playBtn.classList.add("play");
+                audio.pause();
+            }
+        },
+        false
+    );
+
+    //turn 128 seconds into 2:08
+    function getTimeCodeFromNum(num) {
+        let seconds = parseInt(num);
+        let minutes = parseInt(seconds / 60);
+        seconds -= minutes * 60;
+        const hours = parseInt(minutes / 60);
+        minutes -= hours * 60;
+
+        if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+        return `${String(hours).padStart(2, 0)}:${minutes}:${String(
+            seconds % 60
+        ).padStart(2, 0)}`;
+ }
+ </script>
 </body>
 </html>
-
