@@ -16,57 +16,121 @@ background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #0
   color:#fff;
   text-align:center;
 }
-h1{
-  font-size:50px;
-  text-align:center;
-  animation:glitch 2s steps(100) infinite;
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
 }
-$r: rgba(255,0,0,1); $g: rgba(0,255,0,1); $b: rgba(0,0,255,1); $px: 0; $px2:0;
-@mixin mini-glitch($c1, $c2, $coeff, $start, $end){
-  $interval: $end - $start;
-  @for $i from $start through $end {
-    #{$i * 1%} {   
-      @if $i < $start + ($interval/2){
-        $px : $px + $coeff;$px2: -$px;   
-        text-shadow: #{$px}px 0 0 $c1, #{$px2}px 0 0 $c2;
-      }
-      @else{
-        $px : $px - 1;$px2: -$px;  
-        text-shadow: #{$px}px 0 0 $c1, #{$px2}px 0 0 $c2;
-      } 
+
+.glitch {
+    position: relative;
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
+    animation: glitch-animation 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+    background: black;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-animation 2.5s infinite;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 cyan;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-animation-before 1.5s infinite linear;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 red;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-animation-after 1.5s infinite linear;
+}
+
+@keyframes glitch-animation {
+    0% {
+        transform: translate(0);
     }
-  }
-  $px: 0;$px2: 0;
-}
-@mixin big-glitch($c1, $c2, $distance, $start, $end){
-  @for $i from $start through $end {   
-    #{$i * 1%} {
-      @if $i == $end {
-          text-shadow: 0 0 0 $c1, 0 0 0 $c2;
-      }
-      @else{   
-          $px : $distance;$px2: -$px;
-          text-shadow: #{$px}px 0 0 $c1, #{$px2}px 0 0 $c2;
-      }
+    20% {
+        transform: translate(-2px, 2px);
     }
-  }
-  $px: 0;$px2: 0;
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
 }
-@keyframes glitch{      
-  @include mini-glitch($r, $b, 1, 0, 10);
-  @include mini-glitch($r, $g, 0.5, 11, 20); 
-  @include mini-glitch($b, $g, 0.7, 21, 40); 
-  @include big-glitch($b, $g, 50, 41, 42);  
-  @include mini-glitch($r, $g, 0.5, 43, 50); 
-  @include mini-glitch($r, $b, 1, 51, 60);
-  @include big-glitch($r, $g, 30, 61, 62); 
-  @include mini-glitch($r, $b, 0.5, 63, 70);
-  @include big-glitch($r, $b, 70, 71, 72);
-  @include mini-glitch($r, $b, 1, 73, 80);
-  @include mini-glitch($r, $g, 0.5, 81, 90);
-  @include big-glitch($g, $b, 60, 91, 92);
-  @include mini-glitch($b, $g, 0.7, 92, 100);
+
+@keyframes glitch-animation-before {
+    0% {
+        clip: rect(0, 900px, 50px, 0);
+        transform: translate(0);
+    }
+    25% {
+        clip: rect(30px, 900px, 85px, 0);
+        transform: translate(5px, -5px);
+    }
+    50% {
+        clip: rect(10px, 900px, 60px, 0);
+        transform: translate(5px, 5px);
+    }
+    75% {
+        clip: rect(50px, 900px, 100px, 0);
+        transform: translate(-5px, 0);
+    }
+    100% {
+        clip: rect(0, 900px, 50px, 0);
+        transform: translate(0);
+    }
 }
+
+@keyframes glitch-animation-after {
+    0% {
+        clip: rect(50px, 900px, 100px, 0);
+        transform: translate(0);
+    }
+    25% {
+        clip: rect(10px, 900px, 60px, 0);
+        transform: translate(-5px, 5px);
+    }
+    50% {
+        clip: rect(40px, 900px, 85px, 0);
+        transform: translate(-5px, -5px);
+    }
+    75% {
+        clip: rect(30px, 900px, 90px, 0);
+        transform: translate(5px, 0);
+    }
+    100% {
+        clip: rect(50px, 900px, 100px, 0);
+        transform: translate(0);
+    }
+}
+
 .star{
   position:absolute;
   width:2px;
