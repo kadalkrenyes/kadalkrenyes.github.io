@@ -16,16 +16,6 @@ background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #0
   color:#fff;
   text-align:center;
 }
-body {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-}
-
 .glitch {
     position: relative;
     font-size: 50px;
