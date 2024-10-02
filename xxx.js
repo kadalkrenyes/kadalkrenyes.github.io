@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("DOMContentLoaded",function(){
  var body=document.body;
   setInterval(createStar,50);
@@ -89,4 +88,3 @@ document.addEventListener("DOMContentLoaded",function(){
             seconds % 60
         ).padStart(2, 0)}`;
  }
- </script>
