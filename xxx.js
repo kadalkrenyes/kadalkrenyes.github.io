@@ -21,10 +21,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 //   play audio code start
  const audioPlayer = document.querySelector(".audio-player");
-    const audio = new Audio("Gravity.mp3"
-    );
-    //credit for song: Adrian kreativaweb@gmail.com
-
+    const audio = new Audio("Gravity.mp3");
     console.dir(audio);
 
     audio.addEventListener(
