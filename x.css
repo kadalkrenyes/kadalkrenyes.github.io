@@ -17,11 +17,7 @@ background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #0
   text-align:center;
 }
 .glitch {
-    position: relative;
     font-size: 50px;
-    color: white;
-    letter-spacing: 5px;
-    text-transform: uppercase;
     text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
     animation: glitch-animation 1s infinite;
 }
@@ -32,7 +28,6 @@ background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #0
     position: absolute;
     left: 0;
     top: 0;
-    color: white;
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
     animation: glitch-animation 2.5s infinite;
