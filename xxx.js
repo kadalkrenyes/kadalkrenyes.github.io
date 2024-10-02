@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded",function(){
   }
   } 
 })
-</script>
-<script>
+
 //   play audio code start
  const audioPlayer = document.querySelector(".audio-player");
     const audio = new Audio("//farizal.web.id/Gravity.mp3"
