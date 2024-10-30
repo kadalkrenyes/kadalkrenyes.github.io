@@ -159,7 +159,7 @@ function katanimasi3(){
         	teksLove.innerHTML += ' 1% ' + randomEmoji;
             teks4.innerHTML += `<br><br>` + teksTambahan.innerHTML + `<br><br>2025 KURUS` ;
             teksTambahan.innerHTML="";
-            setTimeout(animateteksnim,100);
+            setTimeout(animateteksnim,200);
             
             // setInterval(falling, 200);
             setTimeout(function(){clearInterval(scrollInterval)},500);
