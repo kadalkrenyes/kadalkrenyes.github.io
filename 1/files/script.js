@@ -27,7 +27,7 @@ teks4.innerHTML = "";
 function katanimasi(){
     teks4.innerHTML = "";
 	new TypeIt("#teks4", {
-    strings: ["" + initeks], startDelay: 10, speed: 35, cursor: true,
+    strings: ["" + initeks], startDelay: 10, speed: 45, cursor: true,
     afterComplete: function(){
       	teks4.innerHTML = initeks;
       
@@ -157,7 +157,7 @@ function katanimasi3(){
         afterComplete: function(){
         	teksLoveBawaan = teksLove.innerHTML;
         	teksLove.innerHTML += ' 1% ' + randomEmoji;
-            teks4.innerHTML += `<br><br>` + teksTambahan.innerHTML + `<br><br>2025 KURUS` ;
+            teks4.innerHTML += `<br><br>` + teksTambahan.innerHTML + `<br>2025 KURUS` ;
             teksTambahan.innerHTML="";
             setTimeout(animateteksnim,200);
             
