@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css?family=Tomorrow');
+ body{
+  margin:0;
+  padding:0;
+  font-family: 'Tomorrow', sans-serif;
+  height:100vh;
+background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.text{
+  position:absolute;
+  top:10%;
+  color:#fff;
+  text-align:center;
+}
+.glitch {
+    font-size: 50px;
+    text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
+    animation: glitch-animation 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-animation 2.5s infinite;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 cyan;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-animation-before 1.5s infinite linear;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 red;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-animation-after 1.5s infinite linear;
+}
+
+@keyframes glitch-animation {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-animation-before {
+    0% {
+        clip: rect(0, 900px, 50px, 0);
+        transform: translate(0);
+    }
+    25% {
+        clip: rect(30px, 900px, 85px, 0);
+        transform: translate(5px, -5px);
+    }
+    50% {
+        clip: rect(10px, 900px, 60px, 0);
+        transform: translate(5px, 5px);
+    }
+    75% {
+        clip: rect(50px, 900px, 100px, 0);
+        transform: translate(-5px, 0);
+    }
+    100% {
+        clip: rect(0, 900px, 50px, 0);
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-animation-after {
+    0% {
+        clip: rect(50px, 900px, 100px, 0);
+        transform: translate(0);
+    }
+    25% {
+        clip: rect(10px, 900px, 60px, 0);
+        transform: translate(-5px, 5px);
+    }
+    50% {
+        clip: rect(40px, 900px, 85px, 0);
+        transform: translate(-5px, -5px);
+    }
+    75% {
+        clip: rect(30px, 900px, 90px, 0);
+        transform: translate(5px, 0);
+    }
+    100% {
+        clip: rect(50px, 900px, 100px, 0);
+        transform: translate(0);
+    }
+}
+
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:#fff;
+  right:0;
+  animation:starTwinkle 3s infinite linear;
+}
+.astronaut img{
+  width:100px;
+  position:absolute;
+  top:55%;
+  animation:astronautFly 6s infinite linear;
+}
+@keyframes astronautFly{
+  0%{
+    left:-100px;
+  }
+  25%{
+    top:50%;
+    transform:rotate(30deg);
+  }
+  50%{
+    transform:rotate(45deg);
+    top:55%;
+  }
+  75%{
+    top:60%;
+    transform:rotate(30deg);
+  }
+  100%{
+    left:110%;
+    transform:rotate(45deg);
+  }
+}
+@keyframes starTwinkle{
+  0%{
+     background:rgba(255,255,255,0.4);
+  }
+  25%{
+    background:rgba(255,255,255,0.8);
+  }
+  50%{
+   background:rgba(255,255,255,1);
+  }
+  75%{
+    background:rgba(255,255,255,0.8);
+  }
+  100%{
+    background:rgba(255,255,255,0.4);
+  }
+}
+:root {
+	--primary: #fff;
+	--solid: #fff;
+	--btn-w: 7em;
+	--dot-w: calc(var(--btn-w)*.2);
+	--tr-X: calc(var(--btn-w) - var(--dot-w));
+}
+* {box-sizing: border-box;}
+*:before, *:after {box-sizing: border-box;}
+.btn {
+	position: relative;
+	margin: 0 auto;
+	width: var(--btn-w);
+	color: var(--primary);
+	border: .15em solid var(--primary);
+	border-radius: 5em;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 1em;
+	line-height: 2em;
+	cursor: pointer;	
+}
+.dot {
+	content: '';
+	position: absolute;
+	top: 0;
+	width: var(--dot-w);
+	height: 100%;
+	border-radius: 100%;
+	transition: all 300ms ease;
+	display: none;
+}
+.dot:after {
+	content: '';
+	position: absolute;
+	left: calc(50% - .4em);
+	top: -.4em;
+	height: .8em;
+	width: .8em;
+	background: var(--primary);
+	border-radius: 1em;
+	border: .25em solid var(--solid);
+	box-shadow: 0 0 .7em var(--solid),
+				0 0 2em var(--primary);
+}
+.btn:hover .dot,
+.btn:focus .dot {
+	animation: atom 2s infinite linear;
+	display: block;
+}
+@keyframes atom {
+	0% {transform: translateX(0) rotate(0);}
+	30%{transform: translateX(var(--tr-X)) rotate(0);}
+	50% {transform: translateX(var(--tr-X)) rotate(180deg);}
+	80% {transform: translateX(0) rotate(180deg);}
+	100% {transform: translateX(0) rotate(360deg);}
+}
+/*  audio file styles */
+      .audio-player {
+     	position:absolute;
+ 		top:85%;
+        box-sizing: border-box;
+        color: #FFF;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: 6px auto;
+        background: #rgba(255,255,255,0.5) ;
+        box-shadow: 9.14894px 3.65957px 31.1064px rgb(0 0 0 / 95%);
+        border-radius: 30px;
+        padding: 21px 32px;
+        font-family: 'Tomorrow';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 27px;
+        line-height: 47px;
+        max-width: 519px;
+        height: 88px;
+        display: flex;
+        align-items: center;
+    }
+
+    .audio-player-container.is-active .audio-player  {
+        display: flex;   
+    }
+
+    .audio-player .toggle-play {
+        height: 54px;
+        width: 54px;
+         cursor: pointer;
+    }
+
+    .audio-player  .toggle-play.play {
+        background: url(https://www.svgrepo.com/show/418036/play.svg);
+         background-repeat: no-repeat;
+    background-position: center;
+      background-size: contain;
+    }
+
+    .audio-player  .toggle-play.pause {
+       background: url(https://www.svgrepo.com/show/418030/turn-off.svg);
+         background-repeat: no-repeat;
+    background-position: center;
+      background-size: contain;
+    }
+
+    .audio-player  .time {
+        display: flex;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .timeline {
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        background: #B6B6B6;
+        border-radius: 10px;
+        height: 14px;
+        overflow: hidden;
+    }
+
+    .timeline .progress {
+        background: #4E3306;
+        width: 0%;
+        height: 100%;
+        transition: 0.25s;
+        border-radius: 10px;
+    }
+@media only screen and (max-width: 767px){
+   .audio-player .toggle-play { height: 47px; width: 47px; }
+     .audio-player{font-size: 18px; padding: 12px 28px; height: 79px; border-radius: 16px;}
+     .audio-player .time { padding-left: 12px; padding-right: 12px; }
+     .timeline{height: 12px;}
+}

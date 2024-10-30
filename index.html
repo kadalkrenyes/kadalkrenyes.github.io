@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>FRZL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<link rel="icon" type="image/svg+xml" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Solid_unicursal_hexagram.svg/512px-Solid_unicursal_hexagram.svg.png">
+<link rel="stylesheet" href="x.css"> 
+</head>
+<body>
+<div class="text">
+  <div>ERROR</div>
+  <h1 class="glitch" data-text="FRZL">FRZL</h1>
+  <div>NOT HERE</div>
+  <hr><br/>
+  <a href="https://www.instagram.com/farizalsetya" target="_blank">	<div class="btn">
+		<div>Go Back!</div>
+		<div class="dot"></div>
+	</div></a>
+</div>
+<div class="astronaut">
+  <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png" alt="" class="src">
+</div>
+         <div class="audio-player">
+
+    <div class="play-container">
+        <div class="toggle-play play">
+        </div>
+    </div>
+    <div class="time">
+        <div class="current">0:00</div>
+        <div class="divider">/</div>
+        <div class="length"></div>
+    </div>
+    <div class="timeline">
+        <div class="progress"></div>
+    </div>
+    <div class="volume-container">
+        <div class="volume-button">
+            <div class="volume icono-volumeMedium"></div>
+        </div>
+
+        <div class="volume-slider">
+            <div class="volume-percentage"></div>
+        </div>
+    </div>
+</div> 
+	<script>
+		document.addEventListener("DOMContentLoaded",function(){
+ var body=document.body;
+  setInterval(createStar,50);
+  function createStar(){
+    var right=Math.random()*500;
+    var top=Math.random()*screen.height;
+    var star=document.createElement("div");
+ star.classList.add("star")
+  body.appendChild(star);
+  setInterval(runStar,10);
+    star.style.top=top+"px";
+  function runStar(){
+    if(right>=screen.width){
+      star.remove();
+    }
+    right+=3;
+    star.style.right=right+"px";
+  }
+  } 
+})
+	
+ const audioPlayer = document.querySelector(".audio-player");
+    const audio = new Audio("//farizal.web.id/Gravity.mp3");
+    console.dir(audio);
+    audio.addEventListener(
+        "loadeddata",
+        () => {
+            audioPlayer.querySelector(".time .length").textContent = getTimeCodeFromNum(
+                audio.duration
+            );
+            audio.volume = .75;
+        },
+        false
+    );
+    const timeline = audioPlayer.querySelector(".timeline");
+    timeline.addEventListener("click", e => {
+        const timelineWidth = window.getComputedStyle(timeline).width;
+        const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
+        audio.currentTime = timeToSeek;
+    }, false);
+    setInterval(() => {
+        const progressBar = audioPlayer.querySelector(".progress");
+        progressBar.style.width = audio.currentTime / audio.duration * 100 + "%";
+        audioPlayer.querySelector(".time .current").textContent = getTimeCodeFromNum(
+            audio.currentTime
+        );
+    }, 500);
+    const playBtn = audioPlayer.querySelector(".toggle-play");
+    playBtn.addEventListener(
+        "click",
+        () => {
+            if (audio.paused) {
+                playBtn.classList.remove("play");
+                playBtn.classList.add("pause");
+                audio.play();
+            } else {
+                playBtn.classList.remove("pause");
+                playBtn.classList.add("play");
+                audio.pause();
+            }
+        },
+        false
+    );
+    function getTimeCodeFromNum(num) {
+        let seconds = parseInt(num);
+        let minutes = parseInt(seconds / 60);
+        seconds -= minutes * 60;
+        const hours = parseInt(minutes / 60);
+        minutes -= hours * 60;
+        if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+        return `${String(hours).padStart(2, 0)}:${minutes}:${String(
+            seconds % 60
+        ).padStart(2, 0)}`;
+ }
+</script>
+</body>
+
+</html>
