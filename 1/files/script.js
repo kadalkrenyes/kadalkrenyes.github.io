@@ -27,7 +27,7 @@ teks4.innerHTML = "";
 function katanimasi(){
     teks4.innerHTML = "";
 	new TypeIt("#teks4", {
-    strings: ["" + initeks], startDelay: 10, speed: 25, cursor: true,
+    strings: ["" + initeks], startDelay: 10, speed: 35, cursor: true,
     afterComplete: function(){
       	teks4.innerHTML = initeks;
       
@@ -151,7 +151,7 @@ function katanimasi3(){
     new TypeIt("#teks4", {
         strings: Array.from({length: 10}, (_, i) => `I Love Youu ${i + 1}% ` + randomEmoji),
         startDelay: 50,
-        speed: 25,
+        speed: 15,
         cursor: false,
         nextStringDelay: 0,
         afterComplete: function(){
