@@ -151,13 +151,13 @@ function katanimasi3(){
     new TypeIt("#teks4", {
         strings: Array.from({length: 10}, (_, i) => `I Love Youu ${i + 1}% ` + randomEmoji),
         startDelay: 50,
-        speed: 10,
+        speed: 25,
         cursor: false,
         nextStringDelay: 0,
         afterComplete: function(){
         	teksLoveBawaan = teksLove.innerHTML;
         	teksLove.innerHTML += ' 1% ' + randomEmoji;
-            teks4.innerHTML += `<br><br>` + teksTambahan.innerHTML;
+            teks4.innerHTML += `<br><br>` + teksTambahan.innerHTML + `<br><br>2025 KURUS` ;
             teksTambahan.innerHTML="";
             setTimeout(animateteksnim,100);
             
